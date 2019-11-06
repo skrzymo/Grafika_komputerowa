@@ -1,0 +1,31 @@
+﻿<Window x:Class="Projekt1.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekt1.Views"
+        xmlns:cal="http://www.caliburnproject.org"
+        mc:Ignorable="d"
+        Title="Grafika komputerowa" Height="800" Width="800">
+    <DockPanel LastChildFill="True">
+        
+        <Menu DockPanel.Dock="Top" Background="LightGray">
+
+            <Menu.Resources>
+                <Style TargetType="{x:Type MenuItem}">
+                    <Setter Property="BorderBrush" Value="Black" />
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="Margin" Value="1, 0" />
+                    <Setter Property="cal:Message.Attach" Value="[Event Click] = [Action ActivateItem($source)]" />
+                </Style>
+            </Menu.Resources>
+            
+            <MenuItem Header="Projekt 1" ToolTip="PRYMITYWY GRAFICZNE ORAZ KANWA. PRZESTRZENIE BARW." />
+            <MenuItem Header="Projekt 2" IsEnabled="False" />
+            <MenuItem Header="Projekt 3" IsEnabled="False" />
+        </Menu>
+
+        <ContentControl x:Name="ActiveItem" />
+
+    </DockPanel>
+</Window>

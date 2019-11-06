@@ -1,0 +1,127 @@
+﻿<UserControl x:Class="Projekt1.Views.ProjectOneView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Projekt1.Views"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="5" />
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="0, 5" />
+            <Setter Property="Width" Value="50" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="cal:Message.Attach" Value="[Event PreviewTextInput] = [Action ValidateText($eventArgs)]" />
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="0, 5" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Margin" Value="0, 5" />
+            <Setter Property="Padding" Value="5" />
+        </Style>
+        <Style TargetType="{x:Type Slider}">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
+
+            <StackPanel.Resources>
+
+            </StackPanel.Resources>
+
+            <ComboBox x:Name="PrimitivesList" SelectedItem="{Binding SelectedPrimitiveFromList, Mode=TwoWay}" />
+            <Label Content="x1" />
+            <TextBox Text="{Binding XOneCoordinate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="y1" />
+            <TextBox Text="{Binding YOneCoordinate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="x2" />
+            <TextBox Text="{Binding XTwoCoordinate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="y2" />
+            <TextBox Text="{Binding YTwoCoordinate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button x:Name="AddPrimitive" Content="Dodaj" />
+            <Button x:Name="DeletePrimitive" Content="Usuń"/>
+        </StackPanel>
+
+        <TabControl Grid.Row="1" Background="LightGray">
+            <TabItem Header="RGB">
+                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="R:"/>
+                            <TextBox Text="{Binding R, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Slider Maximum="255" Width="255" Value="{Binding R, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="G:"/>
+                            <TextBox Text="{Binding G, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Slider Maximum="255" Width="255" Value="{Binding G, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="B:"/>
+                            <TextBox Text="{Binding B, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Slider Maximum="255" Width="255" Value="{Binding B, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBox Background="{Binding RGBColor}" Width="100" Height="100" Margin="20" IsReadOnly="True" />
+                    <Button x:Name="SetRGBColor" Content="Zastosuj" Height="40" IsEnabled="{Binding IsSetContentEnabled}" />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="CMYK">
+                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="C: "/>
+                            <TextBox Text="{Binding C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Label Content="%"/>
+                            <Slider Maximum="100" Width="100" Value="{Binding C, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="M:"/>
+                            <TextBox Text="{Binding M, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Label Content="%"/>
+                            <Slider Maximum="100" Width="100" Value="{Binding M, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Y: "/>
+                            <TextBox Text="{Binding Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Label Content="%"/>
+                            <Slider Maximum="100" Width="100" Value="{Binding Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="K: "/>
+                            <TextBox Text="{Binding K, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Label Content="%"/>
+                            <Slider Maximum="100" Width="100" Value="{Binding K, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBox Background="{Binding CMYKColor}" Width="100" Height="100" Margin="20" IsReadOnly="True" />
+                    <Button x:Name="SetCMYKColor" Content="Zastosuj" Height="40" IsEnabled="{Binding IsSetContentEnabled}" />
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+
+        <Grid x:Name="GridAroundCanvas" Grid.Row="2" Background="LightGray" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+              cal:Message.Attach="[Event MouseMove] = [Action MouseMove($eventArgs)]; [Event MouseUp] = [Action ClearFlags()]">
+            <Canvas x:Name="ContentGrid" Margin="15" Background="White" cal:Message.Attach="[Event MouseDown] = [Action MouseDown($eventArgs)]" />
+        </Grid> 
+
+    </Grid>
+</UserControl>
