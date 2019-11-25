@@ -1,4 +1,6 @@
-﻿<Window x:Class="Projekt1.Views.ShellView"
+﻿<mah:MetroWindow
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        x:Class="Projekt1.Views.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +8,9 @@
         xmlns:local="clr-namespace:Projekt1.Views"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="Grafika komputerowa" Height="800" Width="800">
+        WindowState="Maximized"
+        Title="Grafika komputerowa">
+    
     <DockPanel LastChildFill="True">
         
         <Menu DockPanel.Dock="Top" Background="LightGray">
@@ -21,11 +25,11 @@
             </Menu.Resources>
             
             <MenuItem Header="Projekt 1" ToolTip="PRYMITYWY GRAFICZNE ORAZ KANWA. PRZESTRZENIE BARW." />
-            <MenuItem Header="Projekt 2" IsEnabled="False" />
+            <MenuItem Header="Projekt 2" ToolTip="PRZEKSZTAŁCENIA PUNKTOWE." />
             <MenuItem Header="Projekt 3" IsEnabled="False" />
         </Menu>
 
         <ContentControl x:Name="ActiveItem" />
 
     </DockPanel>
-</Window>
+</mah:MetroWindow>

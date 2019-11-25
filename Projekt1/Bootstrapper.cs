@@ -23,7 +23,8 @@ namespace Projekt1
 
             container.PerRequest<ShellViewModel>();
 
-            container.Singleton<ProjectOneViewModel>();
+            container.Singleton<ProjectOneViewModel>()
+                .Singleton<ProjectTwoViewModel>();
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)
