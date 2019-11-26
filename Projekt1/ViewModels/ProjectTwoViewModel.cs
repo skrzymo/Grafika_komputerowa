@@ -42,8 +42,18 @@ namespace Projekt1.ViewModels
             {
                 _displayedImage = value;
                 this.NotifyOfPropertyChange();
+
+                if (_displayedImage != null)
+                    this.IsImageNotNull = true;
+                else
+                    this.IsImageNotNull = false;
+
+                this.NotifyOfPropertyChange(() => this.IsImageNotNull);
+
             }
         }
+
+        public bool IsImageNotNull { get; set; }
 
         public void ChooseImage()
         {
@@ -71,6 +81,33 @@ namespace Projekt1.ViewModels
         public void ResetImage()
         {
             this.DisplayedImage = _sourceImage;
+        }
+
+        public async void ConvertToGrayscale()
+        {
+            var metroWindow = Application.Current.MainWindow as MetroWindow;
+            var controller = await metroWindow.ShowProgressAsync("Proszę czekać...", "Trwa przetwarzanie obrazu");
+            controller.SetCancelable(false);
+            controller.SetIndeterminate();
+
+            var newBitmap = this.ConvertFromBitmapImageToBitmap(this.DisplayedImage);
+            var tmpBitmap = new Bitmap(newBitmap);
+
+            for (int i = 0; i < newBitmap.Height; i++)
+            {
+                for (int j = 0; j < newBitmap.Width; j++)
+                {
+                    Color tmpColor = newBitmap.GetPixel(j, i);
+
+                    var rgb = (int)(tmpColor.R * 0.21 + tmpColor.G * 0.72 + tmpColor.B * 0.07);
+
+                    tmpBitmap.SetPixel(j, i, Color.FromArgb(rgb, rgb, rgb));
+                }
+            }
+
+            this.DisplayedImage = this.ConvertFromBitmapToBitmapImage(tmpBitmap);
+
+            await controller.CloseAsync();
         }
 
         public async void SmoothingFilterButton()
@@ -110,6 +147,34 @@ namespace Projekt1.ViewModels
 
             var edgeDetectionFilter = new EdgeDetectionFilter();
             var newBitmap = edgeDetectionFilter.ExecuteFilter(this.ConvertFromBitmapImageToBitmap(this.DisplayedImage));
+            this.DisplayedImage = this.ConvertFromBitmapToBitmapImage(newBitmap);
+
+            await controller.CloseAsync();
+        }
+
+        public async void DilationFilterButton()
+        {
+            var metroWindow = Application.Current.MainWindow as MetroWindow;
+            var controller = await metroWindow.ShowProgressAsync("Proszę czekać...", "Trwa przetwarzanie obrazu");
+            controller.SetCancelable(false);
+            controller.SetIndeterminate();
+
+            var dilationFilter = new DilationFilter();
+            var newBitmap = dilationFilter.ExecuteFilter(this.ConvertFromBitmapImageToBitmap(this.DisplayedImage));
+            this.DisplayedImage = this.ConvertFromBitmapToBitmapImage(newBitmap);
+
+            await controller.CloseAsync();
+        }
+
+        public async void ErosionFilterButton()
+        {
+            var metroWindow = Application.Current.MainWindow as MetroWindow;
+            var controller = await metroWindow.ShowProgressAsync("Proszę czekać...", "Trwa przetwarzanie obrazu");
+            controller.SetCancelable(false);
+            controller.SetIndeterminate();
+
+            var erosionFilter = new ErosionFilter();
+            var newBitmap = erosionFilter.ExecuteFilter(this.ConvertFromBitmapImageToBitmap(this.DisplayedImage));
             this.DisplayedImage = this.ConvertFromBitmapToBitmapImage(newBitmap);
 
             await controller.CloseAsync();

@@ -19,15 +19,16 @@
             <TextBox DockPanel.Dock="Left" Text="{Binding ImageFilePath}"  Width="700" Margin="50, 5, 0, 5" Padding="5" VerticalContentAlignment="Center" />
             <Button DockPanel.Dock="Left" x:Name="ChooseImage" Content="Wybierz obraz" Margin="5" Padding="5" />
             <Button DockPanel.Dock="Right" x:Name="ResetImage" Content="Resetuj obraz" Margin="0, 5, 50, 5" Padding="5" />
+            <Button DockPanel.Dock="Right" x:Name="ConvertToGrayscale" Content="Konwertuj do odcieni szarości" Margin="5" Padding="5" IsEnabled="{Binding IsImageNotNull}"/>
         </DockPanel>
 
         <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0, 2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="SmoothingFilterButton" Content="Filtr wygładzający" Margin="5" Padding="5" />
-                <Button x:Name="MedianFilterButton" Content="Filtr medianowy" Margin="5" Padding="5" />
-                <Button x:Name="EdgeDetectionFilterButton" Content="Filtr wykrywania krawędzi" Margin="5" Padding="5" />
-                <Button x:Name="DilatationButton" Content="Dylatacja" Margin="5" Padding="5" />
-                <Button x:Name="ErosionButton" Content="Erozja" Margin="5" Padding="5" />
+                <Button x:Name="SmoothingFilterButton" Content="Filtr wygładzający" Margin="5" Padding="5" IsEnabled="{Binding IsImageNotNull}"/>
+                <Button x:Name="MedianFilterButton" Content="Filtr medianowy" Margin="5" Padding="5" IsEnabled="{Binding IsImageNotNull}"/>
+                <Button x:Name="EdgeDetectionFilterButton" Content="Filtr wykrywania krawędzi" Margin="5" Padding="5" IsEnabled="{Binding IsImageNotNull}"/>
+                <Button x:Name="DilationFilterButton" Content="Dylacja" Margin="5" Padding="5" IsEnabled="{Binding IsImageNotNull}"/>
+                <Button x:Name="ErosionFilterButton" Content="Erozja" Margin="5" Padding="5" IsEnabled="{Binding IsImageNotNull}"/>
             </StackPanel>
         </Border>
 

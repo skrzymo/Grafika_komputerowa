@@ -9,6 +9,9 @@ namespace Projekt1.ImageFilters
 {
     public class EdgeDetectionFilter : Filter
     {
+        protected new const byte _maskWidth = 3;
+        protected new const byte _maskHeight = 3;
+
         private int[,] _verticalMask = new int[_maskHeight, _maskWidth] { { -1, 0, 1 },
                                                                           { -2, 0, 2 },
                                                                           { -1, 0, 1 }};
@@ -19,19 +22,15 @@ namespace Projekt1.ImageFilters
 
         protected override Color ComputeColorForPixel(int x, int y)
         {
-            int tmpRed = 0;
-            int tmpGreen = 0;
-            int tmpBlue = 0;
+            int tmpRed;
+            int tmpGreen;
+            int tmpBlue;
             int tmpVerticalRed = 0;
             int tmpVerticalGreen = 0;
             int tmpVerticalBlue = 0;
             int tmpHorizontalRed = 0;
             int tmpHorizontalGreen = 0;
             int tmpHorizontalBlue = 0;
-            int counter = 0;
-
-            if (x == 1) { 
-            }
 
             var xStartingPoint = x - _maskHeight / 2;
             var yStartingPoint = y - _maskWidth / 2;
@@ -43,15 +42,22 @@ namespace Projekt1.ImageFilters
                     if (this.CheckIfPixelExists(i, j))
                     {
                         Color tmpColor = _sourceBitmap.GetPixel(j, i);
-                        var rgb = tmpColor.R * 0.21 + tmpColor.G * 0.72 + tmpColor.B * 0.07;
-                        tmpVerticalRed += (int)(rgb * _verticalMask[maskI, maskJ]);
-                        tmpHorizontalRed += (int)(rgb * _horizontalMask[maskI, maskJ]);
-                        tmpVerticalGreen += (int)(rgb * _verticalMask[maskI, maskJ]);
-                        tmpHorizontalGreen += (int)(rgb * _horizontalMask[maskI, maskJ]);
-                        tmpVerticalBlue += (int)(rgb * _verticalMask[maskI, maskJ]);
-                        tmpHorizontalBlue += (int)(rgb * _horizontalMask[maskI, maskJ]);
 
-                        counter++;
+                        var rgb = tmpColor.R * 0.21 + tmpColor.G * 0.72 + tmpColor.B * 0.07;
+
+                        //tmpVerticalRed += (int)(rgb * _verticalMask[maskI, maskJ]);
+                        //tmpHorizontalRed += (int)(rgb * _horizontalMask[maskI, maskJ]);
+                        //tmpVerticalGreen += (int)(rgb * _verticalMask[maskI, maskJ]);
+                        //tmpHorizontalGreen += (int)(rgb * _horizontalMask[maskI, maskJ]);
+                        //tmpVerticalBlue += (int)(rgb * _verticalMask[maskI, maskJ]);
+                        //tmpHorizontalBlue += (int)(rgb * _horizontalMask[maskI, maskJ]);
+
+                        tmpVerticalRed += (int)(tmpColor.R * _verticalMask[maskI, maskJ]);
+                        tmpHorizontalRed += (int)(tmpColor.R * _horizontalMask[maskI, maskJ]);
+                        tmpVerticalGreen += (int)(tmpColor.G * _verticalMask[maskI, maskJ]);
+                        tmpHorizontalGreen += (int)(tmpColor.G * _horizontalMask[maskI, maskJ]);
+                        tmpVerticalBlue += (int)(tmpColor.B * _verticalMask[maskI, maskJ]);
+                        tmpHorizontalBlue += (int)(tmpColor.B * _horizontalMask[maskI, maskJ]);
                     }
                 }
             }
@@ -59,8 +65,6 @@ namespace Projekt1.ImageFilters
             tmpRed = CheckIfValueIsCorrect((int)Math.Sqrt((tmpVerticalRed * tmpVerticalRed) + (tmpHorizontalRed * tmpHorizontalRed)));
             tmpGreen = CheckIfValueIsCorrect((int)Math.Sqrt((tmpVerticalGreen * tmpVerticalGreen) + (tmpHorizontalGreen * tmpHorizontalGreen)));
             tmpBlue = CheckIfValueIsCorrect((int)Math.Sqrt((tmpVerticalBlue * tmpVerticalBlue) + (tmpHorizontalBlue * tmpHorizontalBlue)));
-
-            var color = Color.Black;
 
             return Color.FromArgb(tmpRed, tmpGreen, tmpBlue);
         }

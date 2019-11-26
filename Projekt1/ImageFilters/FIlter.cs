@@ -23,7 +23,7 @@ namespace Projekt1.ImageFilters
             _height = sourceImage.Height;
 
             _sourceBitmap = sourceImage;
-            _tmpBitmap = _sourceBitmap;
+            _tmpBitmap = new Bitmap(_sourceBitmap);
 
             for (int i = 0; i < _height; i++)
             {
@@ -33,7 +33,7 @@ namespace Projekt1.ImageFilters
                 }
             }
 
-            return _sourceBitmap;
+            return _tmpBitmap;
         }
 
         protected abstract Color ComputeColorForPixel(int x, int y);

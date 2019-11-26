@@ -78,7 +78,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Enums\PointsToResizeEnum.cs" />
+    <Compile Include="ImageFilters\DilationFilter.cs" />
     <Compile Include="ImageFilters\EdgeDetectionFilter.cs" />
+    <Compile Include="ImageFilters\ErosionFilter.cs" />
     <Compile Include="ImageFilters\Filter.cs" />
     <Compile Include="ImageFilters\MedianFilter.cs" />
     <Compile Include="ImageFilters\SmoothingFilter.cs" />
