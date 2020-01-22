@@ -19,7 +19,8 @@ namespace Projekt1
         {
             container = new SimpleContainer();
 
-            container.Singleton<IWindowManager, WindowManager>();
+            container.Singleton<IWindowManager, WindowManager>()
+                .Singleton<IEventAggregator, EventAggregator>();
 
             container.PerRequest<ShellViewModel>();
 

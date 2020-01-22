@@ -77,6 +77,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\DoubleToIntConverter.cs" />
     <Compile Include="Enums\PointsToResizeEnum.cs" />
     <Compile Include="ImageFilters\DilationFilter.cs" />
     <Compile Include="ImageFilters\EdgeDetectionFilter.cs" />
@@ -84,6 +85,8 @@
     <Compile Include="ImageFilters\Filter.cs" />
     <Compile Include="ImageFilters\MedianFilter.cs" />
     <Compile Include="ImageFilters\SmoothingFilter.cs" />
+    <Compile Include="Models\Point.cs" />
+    <Compile Include="Models\RectangleExt.cs" />
     <Compile Include="ViewModels\ProjectOneViewModel.cs" />
     <Compile Include="ViewModels\ProjectThreeViewModel.cs" />
     <Compile Include="ViewModels\ProjectTwoViewModel.cs" />
