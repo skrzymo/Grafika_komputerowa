@@ -18,8 +18,8 @@ namespace Projekt1.ViewModels
             if (menuItem.Header.ToString() == "Projekt 2")
                 this.ActivateItem(IoC.Get<ProjectTwoViewModel>());
 
-            //if (menuItem.Header.ToString() == "Projekt 2")
-            //    this.ActivateItem();
+            if (menuItem.Header.ToString() == "Projekt 3")
+                this.ActivateItem(IoC.Get<ProjectThreeViewModel>());
         }
     }
 }

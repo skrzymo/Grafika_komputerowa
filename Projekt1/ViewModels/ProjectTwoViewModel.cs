@@ -3,15 +3,10 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
 using Projekt1.ImageFilters;
-using Projekt1.Views;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
@@ -19,7 +14,7 @@ namespace Projekt1.ViewModels
 {
     public class ProjectTwoViewModel : Screen
     {
-        private BitmapImage _sourceImage;
+        public BitmapImage SourceImage { get; set; }
 
         private string _imageFilePath;
         public string ImageFilePath
@@ -73,14 +68,16 @@ namespace Projekt1.ViewModels
                 bitmap.BeginInit();
                 bitmap.UriSource = new Uri(this.ImageFilePath);
                 bitmap.EndInit();
-                _sourceImage = bitmap;
-                this.DisplayedImage = _sourceImage;
+                this.SourceImage = bitmap;
+                this.DisplayedImage = this.SourceImage;
+
+                this.NotifyOfPropertyChange(() => this.SourceImage);
             }
         }
 
         public void ResetImage()
         {
-            this.DisplayedImage = _sourceImage;
+            this.DisplayedImage = this.SourceImage;
         }
 
         public async void ConvertToGrayscale()

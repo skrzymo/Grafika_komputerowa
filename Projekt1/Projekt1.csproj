@@ -85,10 +85,14 @@
     <Compile Include="ImageFilters\MedianFilter.cs" />
     <Compile Include="ImageFilters\SmoothingFilter.cs" />
     <Compile Include="ViewModels\ProjectOneViewModel.cs" />
+    <Compile Include="ViewModels\ProjectThreeViewModel.cs" />
     <Compile Include="ViewModels\ProjectTwoViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\ProjectOneView.xaml.cs">
       <DependentUpon>ProjectOneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectThreeView.xaml.cs">
+      <DependentUpon>ProjectThreeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProjectTwoView.xaml.cs">
       <DependentUpon>ProjectTwoView.xaml</DependentUpon>
@@ -110,6 +114,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\ProjectOneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectThreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

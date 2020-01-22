@@ -32,7 +32,16 @@
             </StackPanel>
         </Border>
 
-        <Image Grid.Row="2" Source="{Binding DisplayedImage}"/>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Image Source="{Binding SourceImage}" Margin="10" />
+            <Image Grid.Column="1" Source="{Binding DisplayedImage}" Margin="10"/>
+        </Grid>
+        
 
     </Grid>
     

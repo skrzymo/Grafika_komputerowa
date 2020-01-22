@@ -26,7 +26,7 @@
             
             <MenuItem Header="Projekt 1" ToolTip="PRYMITYWY GRAFICZNE ORAZ KANWA. PRZESTRZENIE BARW." />
             <MenuItem Header="Projekt 2" ToolTip="PRZEKSZTAŁCENIA PUNKTOWE." />
-            <MenuItem Header="Projekt 3" IsEnabled="False" />
+            <MenuItem Header="Projekt 3" ToolTip="KRZYWA BÉZIERA." />
         </Menu>
 
         <ContentControl x:Name="ActiveItem" />
