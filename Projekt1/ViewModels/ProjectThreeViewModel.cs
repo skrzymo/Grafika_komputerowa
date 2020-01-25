@@ -23,6 +23,7 @@ namespace Projekt1.ViewModels
         private Canvas _bezierCanvas = new Canvas();
 
         public ObservableCollection<RectangleExt> PointList { get; set; } = new ObservableCollection<RectangleExt>();
+        private List<Point> BezierPoints { get; set; } = new List<Point>();
         public Canvas ContentGrid { get; set; }
 
         public byte BezierDegree
@@ -179,6 +180,7 @@ namespace Projekt1.ViewModels
         {
             this.ContentGrid.Children.Remove(_bezierCanvas);
             _bezierCanvas.Children.Clear();
+            BezierPoints.Clear();
 
             var pointList = new List<Point>();
 
@@ -189,6 +191,21 @@ namespace Projekt1.ViewModels
 
             DrawCasteljau(pointList);
 
+            for (int i = 0; i < BezierPoints.Count - 1; i++)
+            {
+                var line = new Line
+                {
+                    Stroke = Brushes.Red,
+                    StrokeThickness = 1,
+                    X1 = BezierPoints[i].X,
+                    Y1 = BezierPoints[i].Y,
+                    X2 = BezierPoints[i + 1].X,
+                    Y2 = BezierPoints[i + 1].Y
+                };
+
+                _bezierCanvas.Children.Add(line);
+            }
+
             this.ContentGrid.Children.Add(_bezierCanvas);
         }
 
@@ -196,21 +213,11 @@ namespace Projekt1.ViewModels
         {
 
             Point tmp;
-            for (double t = 0; t <= 1; t += 0.001)
+            for (double t = 0; t <= 1; t += 0.01)
             {
                 tmp = GetCasteljauPoint(points.Count - 1, 0, t);
 
-                var line = new Line
-                {
-                    Stroke = Brushes.Red,
-                    StrokeThickness = 2,
-                    X1 = tmp.X,
-                    Y1 = tmp.Y,
-                    X2 = tmp.X + 0.1,
-                    Y2 = tmp.Y + 0.1
-                };
-
-                _bezierCanvas.Children.Add(line);
+                BezierPoints.Add(new Point(tmp.X, tmp.Y));
             }
         }
 
